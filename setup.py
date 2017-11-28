@@ -65,7 +65,7 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=['click'],
+    install_requires=['click>=6.6', 'Jinja2>=2.9.5'],
     setup_requires=[
         # dependency for `python setup.py test`
         'pytest-runner',
