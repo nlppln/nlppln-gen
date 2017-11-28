@@ -7,7 +7,7 @@ import os
 from collections import OrderedDict
 from jinja2 import Environment, PackageLoader
 
-env = Environment(loader=PackageLoader('nlppln', 'templates'),
+env = Environment(loader=PackageLoader('nlpplngen', 'templates'),
                   trim_blocks=True)
 
 
