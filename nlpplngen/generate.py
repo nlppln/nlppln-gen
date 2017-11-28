@@ -2,14 +2,22 @@
 import click
 import sys
 import codecs
+import os
 
 from collections import OrderedDict
 from jinja2 import Environment, PackageLoader
 
-from .utils import create_dirs
-
 env = Environment(loader=PackageLoader('nlppln', 'templates'),
                   trim_blocks=True)
+
+
+def create_dirs(fname):
+    """Create (output) directories if they don't exist
+    """
+    fname = os.path.dirname(os.path.abspath(fname))
+
+    if not os.path.exists(fname):
+        os.makedirs(fname)
 
 
 def to_bool(v):

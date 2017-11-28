@@ -1,6 +1,6 @@
 import pytest
 
-from nlppln.generate import to_bool
+from nlpplngen.generate import to_bool
 
 
 def test_to_bool_correct():
