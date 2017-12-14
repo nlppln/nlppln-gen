@@ -4,6 +4,12 @@ from setuptools import setup, find_packages
 from codecs import open
 from os import path
 
+
+def read(fname):
+    """Define read function to read README in long description."""
+    directory = path.dirname(__file__)
+    return open(path.join(directory, fname), encoding='utf-8').read()
+
 here = path.abspath(path.dirname(__file__))
 
 setup(
@@ -15,8 +21,7 @@ setup(
     version='0.1.0',
 
     description='NLP pipeline software using common workflow language',
-    long_description="""NLP pipeline software using common workflow language
-""",
+    long_description=read('README.rst'),
 
     # The project's main homepage.
     url='https://github.com/nlppln/nlppln-gen',
@@ -55,7 +60,7 @@ setup(
     ],
 
     # What does your project relate to?
-    keywords='text-mining, nlp, pipeline',
+    keywords='text-mining, nlp, pipeline, cwl, commonwl',
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
@@ -80,5 +85,10 @@ setup(
         'tox'
     ],
 
-    #scripts=['recipy-cmd']
+    entry_points={
+        'console_scripts': [
+            'nlppln-gen=nlpplngen.generate:command',
+        ]
+    }
+
 )
