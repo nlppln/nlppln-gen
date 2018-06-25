@@ -4,6 +4,10 @@ class: CommandLineTool
 baseCommand: ["python", "-m", "nlppln.commands.{{command_name}}"]
 {% if inputs %}
 requirements:
+  EnvVarRequirement:
+    envDef:
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8
   InitialWorkDirRequirement:
     listing: $(inputs.in_files)
 
