@@ -38,12 +38,16 @@ def command():
                           type=click.Choice(['y', 'n']))
     script = to_bool(script)
 
+    test = click.prompt('Generate test file?', default='y',
+                        type=click.Choice(['y', 'n']))
+    test = to_bool(test)
+
     step = click.prompt('Generate cwl step?', default='y',
                         type=click.Choice(['y', 'n']))
     step = to_bool(step)
 
-    if not script and not step:
-        click.echo('Not generating script and not generating cwl step.')
+    if not script and not test and not step:
+        click.echo('Not generating script, test file or cwl step.')
         sys.exit()
 
     cname = click.prompt('Command name', default='command')
@@ -96,6 +100,20 @@ def command():
         create_dirs(out_file)
         with codecs.open(out_file, 'wb', encoding='utf-8') as f:
             f.write(r)
+
+    if test:
+        template = env.get_template('test.py')
+
+        r = template.render(command_name=cname)
+
+        default = 'tests/test_{}.py'.format(cname)
+        out_file = click.prompt('Save test to', type=click.Path(),
+                                default=default)
+
+        create_dirs(out_file)
+        with codecs.open(out_file, 'wb', encoding='utf-8') as f:
+            f.write(r)
+            f.write('\n')
 
     if step:
         template = env.get_template('step.cwl')
