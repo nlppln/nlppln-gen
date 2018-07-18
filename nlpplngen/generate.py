@@ -122,7 +122,7 @@ def command():
                             inputs=inputs, outputs=outputs, meta_out=meta_out,
                             meta_out_file=meta_out_file)
 
-        default = 'cwl/{}.cwl'.format(cname.replace('_', '-'))
+        default = 'nlppln/cwl/{}.cwl'.format(cname.replace('_', '-'))
         out_file = click.prompt('Save cwl step to', type=click.Path(),
                                 default=default)
 
